@@ -508,8 +508,8 @@ footer {
         and achieve your dreams with confidence.
     </p>
 
-    <button class="primary-btn" onclick="openDashboard()">
-        Get Started →
+    <button class="primary-btn" onclick="continueToDashboard()">
+    Continue →
     </button>
 
 </section>
@@ -551,6 +551,16 @@ footer {
     <p class="subtitle">
         Welcome, learner! What would you like to study today?
     </p>
+    <div class="card">
+    <h3>📚 Your Subjects</h3>
+    <p id="subjectInfo">
+        Choose a subject to begin learning.
+    </p>
+
+    <select id="dashboardSubject">
+        <option value="">Select your subject</option>
+    </select>
+    </div>
 
     <div class="card">
         <h3>📖 Study Notes</h3>
@@ -823,6 +833,34 @@ function continueToDashboard() {
         alert("Please select your class and board first!");
         return;
     }
+
+    const subjects = {
+        "6": ["English", "Mathematics", "Science", "Social Science", "Languages", "Computer Studies"],
+        "7": ["English", "Mathematics", "Science", "Social Science", "Languages", "Computer Studies"],
+        "8": ["English", "Mathematics", "Science", "Social Science", "Languages", "Computer Studies"],
+        "9": ["English", "Mathematics", "Science", "Social Science", "Languages", "Computer Studies"],
+        "10": ["English", "Mathematics", "Science", "Social Science", "Languages", "Computer Studies"]
+    };
+
+    const subjectList = document.getElementById("dashboardSubject");
+
+    subjectList.innerHTML = '<option value="">Select your subject</option>';
+
+    subjects[selectedClass].forEach(subject => {
+        const option = document.createElement("option");
+        option.value = subject;
+        option.textContent = subject;
+        subjectList.appendChild(option);
+    });
+
+    document.getElementById("subjectInfo").textContent =
+        "Class " + selectedClass + " | " + selectedBoard;
+
+    document.getElementById("setupPage").style.display = "none";
+    document.getElementById("dashboard").style.display = "block";
+
+    window.scrollTo(0, 0);
+}
 
     document.getElementById("setupPage").style.display = "none";
     document.getElementById("dashboard").style.display = "block";
