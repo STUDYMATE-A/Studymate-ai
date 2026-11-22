@@ -2,78 +2,409 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STUDYMATE AI</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STUDYMATE AI</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f6ff;
-            color: #20264a;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background: #f3f6ff;
+    color: #20264a;
+}
 
-        header {
-            background: #253b80;
-            color: white;
-            padding: 22px;
-            text-align: center;
-        }
+button, select {
+    font: inherit;
+}
 
-        .welcome {
-            text-align: center;
-            padding: 70px 20px;
-        }
+button {
+    cursor: pointer;
+    border: none;
+}
 
-        .welcome h1 {
-            font-size: 32px;
-            margin-bottom: 15px;
-        }
+header {
+    background: #101b3b;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
 
-        .welcome p {
-            font-size: 17px;
-            margin-bottom: 25px;
-            color: #555;
-        }
+header h2 {
+    letter-spacing: 2px;
+}
 
-        button {
-            background: #3456c0;
-            color: white;
-            border: none;
-            padding: 14px 28px;
-            border-radius: 10px;
-            font-size: 16px;
-            cursor: pointer;
-        }
+header p {
+    color: #b9c9ef;
+    margin-top: 6px;
+    font-size: 13px;
+}
 
-        .dashboard {
-            display: none;
-            padding: 25px 20px;
-        }
+/* WELCOME PAGE */
 
-        .dashboard h2 {
-            margin-bottom: 20px;
-        }
+.welcome {
+    min-height: calc(100vh - 85px);
+    background: radial-gradient(circle at top, #263e7e, #101b3b 65%);
+    color: white;
+    text-align: center;
+    padding: 35px 20px 55px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
-        .card {
-            background: white;
-            padding: 22px;
-            border-radius: 14px;
-            margin-bottom: 15px;
-            box-shadow: 0 3px 12px #00000010;
-        }
+.tag {
+    background: #ffffff18;
+    color: #9fcdff;
+    border: 1px solid #ffffff30;
+    border-radius: 30px;
+    padding: 9px 17px;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
 
-        .card h3 {
-            margin-bottom: 8px;
-            color: #3456c0;
-        }
-    </style>
+/* CSS ROBOT MASCOT */
+
+.robot {
+    width: 190px;
+    height: 205px;
+    position: relative;
+    margin: 5px auto 25px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.robot-head {
+    width: 125px;
+    height: 105px;
+    background: linear-gradient(145deg,#ffffff,#b8d6f5);
+    border: 5px solid #72b8f5;
+    border-radius: 38px;
+    position: absolute;
+    left: 32px;
+    top: 0;
+    box-shadow: 0 0 30px #52aaff80;
+    z-index: 2;
+}
+
+.antenna {
+    width: 5px;
+    height: 22px;
+    background: #71c5ff;
+    position: absolute;
+    top: -25px;
+    left: 56px;
+}
+
+.antenna:after {
+    content: "";
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #58d5ff;
+    position: absolute;
+    top: -8px;
+    left: -4px;
+    box-shadow: 0 0 12px #58d5ff;
+}
+
+.eyes {
+    display: flex;
+    justify-content: center;
+    gap: 27px;
+    padding-top: 30px;
+}
+
+.eye {
+    width: 13px;
+    height: 17px;
+    border-radius: 50%;
+    background: #168bdf;
+    box-shadow: 0 0 10px #168bdf;
+}
+
+.smile {
+    width: 34px;
+    height: 17px;
+    border-bottom: 4px solid #168bdf;
+    border-radius: 50%;
+    margin: 12px auto 0;
+}
+
+.robot-body {
+    position: absolute;
+    width: 94px;
+    height: 76px;
+    background: linear-gradient(140deg,#ffffff,#a7c9ec);
+    border: 4px solid #72b8f5;
+    border-radius: 25px;
+    top: 108px;
+    left: 47px;
+    z-index: 1;
+}
+
+.chest-light {
+    width: 17px;
+    height: 17px;
+    background: #26bfff;
+    border-radius: 50%;
+    margin: 17px auto;
+    box-shadow: 0 0 14px #26bfff;
+}
+
+.robot-arm {
+    position: absolute;
+    width: 23px;
+    height: 54px;
+    background: #c7def4;
+    border: 3px solid #72b8f5;
+    border-radius: 20px;
+    top: 115px;
+}
+
+.arm-left {
+    left: 25px;
+    transform: rotate(25deg);
+}
+
+.arm-right {
+    right: 25px;
+    transform: rotate(-25deg);
+}
+
+.book {
+    position: absolute;
+    bottom: -5px;
+    left: 40px;
+    width: 110px;
+    height: 44px;
+    display: flex;
+    z-index: 3;
+    filter: drop-shadow(0 0 9px #42baff);
+}
+
+.book-page {
+    width: 50%;
+    height: 42px;
+    background: linear-gradient(140deg,#e4f5ff,#78bfff);
+    border: 2px solid #ffffff;
+    position: relative;
+}
+
+.book-page:first-child {
+    border-radius: 9px 2px 2px 5px;
+    transform: skewY(8deg);
+}
+
+.book-page:last-child {
+    border-radius: 2px 9px 5px 2px;
+    transform: skewY(-8deg);
+}
+
+.book-page:after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    background: #3987d8;
+    top: 13px;
+    left: 12px;
+    box-shadow: 0 7px #3987d8;
+}
+
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+.welcome h1 {
+    font-size: 34px;
+    margin-bottom: 15px;
+}
+
+.welcome p {
+    color: #cbd9f5;
+    line-height: 1.7;
+    max-width: 390px;
+    margin-bottom: 25px;
+}
+
+.primary-btn {
+    background: linear-gradient(120deg,#32a5ff,#3456d4);
+    color: white;
+    padding: 15px 35px;
+    border-radius: 30px;
+    font-weight: bold;
+    box-shadow: 0 5px 20px #258bff55;
+    transition: 0.3s;
+}
+
+.primary-btn:hover {
+    transform: translateY(-3px);
+}
+
+/* DASHBOARD */
+
+.dashboard, .quiz-page {
+    display: none;
+    padding: 28px 20px;
+    max-width: 850px;
+    margin: auto;
+}
+
+.dashboard h2 {
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: #6d7693;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.card {
+    background: white;
+    padding: 23px;
+    border-radius: 17px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 15px #14285c12;
+    border: 1px solid #e9edfa;
+}
+
+.card h3 {
+    color: #3456c0;
+    margin-bottom: 9px;
+}
+
+.card p {
+    color: #65708c;
+    line-height: 1.5;
+}
+
+.quiz-card {
+    border-left: 5px solid #426cf0;
+}
+
+.card-btn {
+    background: #3456c0;
+    color: white;
+    padding: 11px 22px;
+    border-radius: 9px;
+    margin-top: 15px;
+}
+
+/* QUIZ PAGE */
+
+.quiz-page h2 {
+    margin-bottom: 12px;
+}
+
+.quiz-box {
+    background: white;
+    padding: 23px;
+    border-radius: 17px;
+    box-shadow: 0 4px 15px #14285c12;
+    margin-top: 20px;
+}
+
+.quiz-box label {
+    display: block;
+    margin: 18px 0 8px;
+    font-weight: bold;
+}
+
+.quiz-box select {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ccd5ed;
+    border-radius: 9px;
+    background: white;
+    color: #20264a;
+}
+
+.question {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.5;
+    margin: 20px 0;
+}
+
+.option {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: #f1f4ff;
+    color: #20264a;
+    border: 2px solid transparent;
+    padding: 14px;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+.option.selected {
+    border-color: #3456c0;
+    background: #e1e9ff;
+}
+
+.option:disabled {
+    cursor: default;
+}
+
+.feedback {
+    margin-top: 15px;
+    line-height: 1.6;
+}
+
+.progress {
+    color: #52648e;
+    font-size: 13px;
+}
+
+.secondary-btn {
+    background: #e4eaff;
+    color: #3456c0;
+    padding: 12px 20px;
+    border-radius: 9px;
+    margin: 8px 5px 0 0;
+}
+
+.result {
+    text-align: center;
+    padding: 20px 5px;
+}
+
+.result h2 {
+    color: #3456c0;
+    margin: 15px 0;
+}
+
+footer {
+    text-align: center;
+    color: #8790a8;
+    padding: 25px;
+    font-size: 12px;
+}
+
+@media(max-width:480px) {
+    .welcome h1 {
+        font-size: 28px;
+    }
+
+    .robot {
+        transform: scale(.9);
+        margin-bottom: 15px;
+    }
+
+    .dashboard, .quiz-page {
+        padding: 23px 15px;
+    }
+}
+</style>
 </head>
 
 <body>
@@ -83,22 +414,61 @@
     <p>Your Personal AI Study Companion</p>
 </header>
 
+<!-- WELCOME -->
+
 <section class="welcome" id="welcome">
+
+    <div class="tag">✦ YOUR SMART LEARNING PARTNER ✦</div>
+
+    <div class="robot">
+
+        <div class="antenna"></div>
+
+        <div class="robot-head">
+            <div class="eyes">
+                <div class="eye"></div>
+                <div class="eye"></div>
+            </div>
+            <div class="smile"></div>
+        </div>
+
+        <div class="robot-arm arm-left"></div>
+        <div class="robot-arm arm-right"></div>
+
+        <div class="robot-body">
+            <div class="chest-light"></div>
+        </div>
+
+        <div class="book">
+            <div class="book-page"></div>
+            <div class="book-page"></div>
+        </div>
+
+    </div>
+
     <h1>Welcome to STUDYMATE AI!</h1>
 
     <p>
+        Meet your smart study companion.
         Learn smarter, understand better
-        and achieve your goals.
+        and achieve your dreams with confidence.
     </p>
 
-    <button onclick="openDashboard()">
-        Get Started
+    <button class="primary-btn" onclick="openDashboard()">
+        Get Started →
     </button>
+
 </section>
+
+<!-- DASHBOARD -->
 
 <section class="dashboard" id="dashboard">
 
     <h2>Your Learning Dashboard 📚</h2>
+
+    <p class="subtitle">
+        Welcome, learner! What would you like to study today?
+    </p>
 
     <div class="card">
         <h3>📖 Study Notes</h3>
@@ -107,12 +477,15 @@
 
     <div class="card">
         <h3>🤖 AI Study Assistant</h3>
-        <p>Get help understanding difficult topics.</p>
+        <p>Your smart learning helper. More features coming soon!</p>
     </div>
 
-    <div class="card">
+    <div class="card quiz-card">
         <h3>✍️ Practice Quiz</h3>
-        <p>Test your knowledge and improve learning.</p>
+        <p>Test your knowledge and improve your learning.</p>
+        <button class="card-btn" onclick="openQuiz()">
+            Start Quiz →
+        </button>
     </div>
 
     <div class="card">
@@ -122,12 +495,383 @@
 
 </section>
 
+<!-- QUIZ -->
+
+<section class="quiz-page" id="quizPage">
+
+    <button class="secondary-btn" onclick="backToDashboard()">
+        ← Dashboard
+    </button>
+
+    <h2>✍️ Practice Quiz</h2>
+
+    <p class="subtitle">
+        Choose your subject and challenge yourself!
+    </p>
+
+    <div class="quiz-box" id="setup">
+
+        <label for="subject">Choose Subject</label>
+
+        <select id="subject">
+            <option value="English">English</option>
+            <option value="Education">Education</option>
+            <option value="Political Science">Political Science</option>
+            <option value="Computer Science">Computer Science</option>
+        </select>
+
+        <br><br>
+
+        <button class="primary-btn" onclick="startQuiz()">
+            Start Quiz 🚀
+        </button>
+
+    </div>
+
+    <div class="quiz-box" id="questionBox" style="display:none">
+
+        <p class="progress" id="progress"></p>
+
+        <div class="question" id="question"></div>
+
+        <div id="options"></div>
+
+        <p class="feedback" id="feedback"></p>
+
+        <button class="primary-btn" id="nextBtn"
+        onclick="nextQuestion()" style="display:none">
+            Next Question →
+        </button>
+
+    </div>
+
+    <div class="quiz-box result" id="resultBox"
+    style="display:none">
+
+        <h2>🎉 Quiz Completed!</h2>
+
+        <h1 id="score"></h1>
+
+        <p id="resultMessage"></p>
+
+        <br>
+
+        <button class="primary-btn" onclick="restartQuiz()">
+            Try Again
+        </button>
+
+        <button class="secondary-btn" onclick="backToDashboard()">
+            Dashboard
+        </button>
+
+    </div>
+
+</section>
+
+<footer>
+    © 2026 STUDYMATE AI | Learn Smarter, Grow Faster.
+</footer>
+
 <script>
-    function openDashboard() {
-        document.getElementById("welcome").style.display = "none";
-        document.getElementById("dashboard").style.display = "block";
+
+const quizzes = {
+
+    "English": [
+        {
+            q: "Which word is a noun?",
+            o: ["Beautiful", "Happiness", "Quickly", "Run"],
+            a: 1,
+            e: "Happiness is a noun because it names a feeling or state."
+        },
+        {
+            q: "Choose the correct sentence.",
+            o: [
+                "She go to school.",
+                "She going school.",
+                "She goes to school.",
+                "She gone school."
+            ],
+            a: 2,
+            e: "She goes to school is correct. The verb agrees with the singular subject."
+        },
+        {
+            q: "What is the opposite of ancient?",
+            o: ["Modern", "Old", "Historic", "Past"],
+            a: 0,
+            e: "Modern means relating to the present or recent times."
+        },
+        {
+            q: "Which is a pronoun?",
+            o: ["School", "They", "Happy", "Beautiful"],
+            a: 1,
+            e: "They is a pronoun used in place of a noun."
+        }
+    ],
+
+    "Education": [
+        {
+            q: "What is education?",
+            o: [
+                "Only reading books",
+                "A process of learning and development",
+                "Only passing examinations",
+                "Only classroom teaching"
+            ],
+            a: 1,
+            e: "Education is a process that develops knowledge, skills and understanding."
+        },
+        {
+            q: "Which is a formal agency of education?",
+            o: ["Family", "Peer group", "School", "Community"],
+            a: 2,
+            e: "School is a formal educational institution."
+        },
+        {
+            q: "Who is known as the father of modern education?",
+            o: ["John Dewey", "Plato", "Aristotle", "Socrates"],
+            a: 0,
+            e: "John Dewey is widely associated with modern progressive education."
+        },
+        {
+            q: "Which is an important aim of education?",
+            o: [
+                "Memorising without understanding",
+                "Avoiding responsibility",
+                "All-round development",
+                "Only gaining marks"
+            ],
+            a: 2,
+            e: "Education supports the intellectual, social, emotional and physical development of a person."
+        }
+    ],
+
+    "Political Science": [
+        {
+            q: "What is the supreme law of India?",
+            o: ["Parliament", "The Constitution", "The Supreme Court", "The Cabinet"],
+            a: 1,
+            e: "The Constitution is the supreme law of India."
+        },
+        {
+            q: "What does democracy mean?",
+            o: [
+                "Rule by one person",
+                "Rule by the military",
+                "Government by the people",
+                "Rule by a king"
+            ],
+            a: 2,
+            e: "Democracy is a system in which people participate in governing, directly or through representatives."
+        },
+        {
+            q: "Which is a fundamental right in India?",
+            o: [
+                "Right to Equality",
+                "Right to Rule",
+                "Right to Become President",
+                "Right to Ignore Laws"
+            ],
+            a: 0,
+            e: "The Right to Equality is guaranteed under Articles 14–18 of the Indian Constitution."
+        },
+        {
+            q: "Who is the constitutional head of India?",
+            o: ["Prime Minister", "President", "Chief Justice", "Governor"],
+            a: 1,
+            e: "The President is the constitutional head of the Indian Union."
+        }
+    ],
+
+    "Computer Science": [
+        {
+            q: "What does CPU stand for?",
+            o: [
+                "Central Processing Unit",
+                "Computer Personal Unit",
+                "Central Program Utility",
+                "Control Processing User"
+            ],
+            a: 0,
+            e: "CPU stands for Central Processing Unit."
+        },
+        {
+            q: "Which language is used in our project?",
+            o: ["Python", "HTML", "C++", "Java"],
+            a: 1,
+            e: "HTML is used to structure the content of our website."
+        },
+        {
+            q: "Which of these is an input device?",
+            o: ["Monitor", "Printer", "Keyboard", "Speaker"],
+            a: 2,
+            e: "A keyboard allows users to enter information into a computer."
+        },
+        {
+            q: "What does WWW stand for?",
+            o: [
+                "World Wide Web",
+                "World Web Window",
+                "Wide World Website",
+                "Web World Work"
+            ],
+            a: 0,
+            e: "WWW stands for World Wide Web."
+        }
+    ]
+
+};
+
+let currentQuiz = [];
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
+
+function openDashboard() {
+    document.getElementById("welcome").style.display = "none";
+    document.getElementById("dashboard").style.display = "block";
+    document.getElementById("quizPage").style.display = "none";
+}
+
+function openQuiz() {
+    document.getElementById("dashboard").style.display = "none";
+    document.getElementById("quizPage").style.display = "block";
+
+    document.getElementById("setup").style.display = "block";
+    document.getElementById("questionBox").style.display = "none";
+    document.getElementById("resultBox").style.display = "none";
+
+    window.scrollTo(0,0);
+}
+
+function backToDashboard() {
+    openDashboard();
+    window.scrollTo(0,0);
+}
+
+function startQuiz() {
+
+    const subject = document.getElementById("subject").value;
+
+    currentQuiz = quizzes[subject];
+    currentQuestion = 0;
+    score = 0;
+
+    document.getElementById("setup").style.display = "none";
+    document.getElementById("resultBox").style.display = "none";
+    document.getElementById("questionBox").style.display = "block";
+
+    showQuestion();
+    window.scrollTo(0,0);
+}
+
+function showQuestion() {
+
+    answered = false;
+
+    const item = currentQuiz[currentQuestion];
+
+    document.getElementById("progress").textContent =
+        "Question " + (currentQuestion + 1) +
+        " of " + currentQuiz.length;
+
+    document.getElementById("question").textContent = item.q;
+
+    document.getElementById("feedback").textContent = "";
+
+    document.getElementById("nextBtn").style.display = "none";
+
+    const optionsBox = document.getElementById("options");
+    optionsBox.innerHTML = "";
+
+    item.o.forEach((option,index) => {
+
+        const btn = document.createElement("button");
+
+        btn.className = "option";
+        btn.textContent = option;
+
+        btn.onclick = function() {
+            selectAnswer(index,btn);
+        };
+
+        optionsBox.appendChild(btn);
+
+    });
+}
+
+function selectAnswer(index,selectedButton) {
+
+    if(answered) return;
+
+    answered = true;
+
+    const item = currentQuiz[currentQuestion];
+
+    const allOptions = document.querySelectorAll(".option");
+
+    allOptions.forEach(btn => {
+        btn.disabled = true;
+    });
+
+    if(index === item.a) {
+        score++;
+        selectedButton.classList.add("selected");
+        document.getElementById("feedback").textContent =
+            "✅ Correct! " + item.e;
+    } else {
+        selectedButton.classList.add("selected");
+        document.getElementById("feedback").textContent =
+            "❌ Not quite. " + item.e;
     }
+
+    const nextBtn = document.getElementById("nextBtn");
+
+    nextBtn.style.display = "inline-block";
+
+    if(currentQuestion === currentQuiz.length - 1) {
+        nextBtn.textContent = "See Results";
+    }
+}
+
+function nextQuestion() {
+
+    currentQuestion++;
+
+    if(currentQuestion < currentQuiz.length) {
+        showQuestion();
+    } else {
+        showResults();
+    }
+}
+
+function showResults() {
+
+    document.getElementById("questionBox").style.display = "none";
+    document.getElementById("resultBox").style.display = "block";
+
+    document.getElementById("score").textContent =
+        score + " / " + currentQuiz.length;
+
+    document.getElementById("resultMessage").textContent =
+        score === currentQuiz.length
+        ? "Excellent! Perfect score! 🏆"
+        : score >= 2
+        ? "Good effort! Keep learning and improving! 🌟"
+        : "Keep practising! Every attempt helps you learn. 💪";
+
+    window.scrollTo(0,0);
+}
+
+function restartQuiz() {
+
+    document.getElementById("resultBox").style.display = "none";
+    document.getElementById("setup").style.display = "block";
+
+    window.scrollTo(0,0);
+}
+
 </script>
 
 </body>
-</html>
+    </html>
+            
