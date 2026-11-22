@@ -129,11 +129,25 @@ header p {
 }
 
 .smile {
-    width: 34px;
-    height: 17px;
-    border-bottom: 4px solid #168bdf;
-    border-radius: 50%;
-    margin: 12px auto 0;
+    width: 40px;
+    height: 21px;
+    background: #168bdf;
+    border: 2px solid #168bdf;
+    border-radius: 4px 4px 20px 20px;
+    margin: 10px auto 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.smile::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: white;
+    border-radius: 0 0 5px 5px;
 }
 
 .robot-body {
@@ -247,7 +261,47 @@ header p {
 .primary-btn:hover {
     transform: translateY(-3px);
 }
+/* CLASS AND BOARD SELECTION */
 
+.setup-page {
+    display: none;
+    max-width: 650px;
+    margin: auto;
+    padding: 30px 20px;
+}
+
+.setup-page h2 {
+    margin-bottom: 10px;
+    color: #253b80;
+}
+
+.setup-page p {
+    color: #65708c;
+    line-height: 1.6;
+    margin-bottom: 22px;
+}
+
+.setup-card {
+    background: white;
+    padding: 23px;
+    border-radius: 17px;
+    box-shadow: 0 4px 15px #14285c12;
+}
+
+.setup-card label {
+    display: block;
+    font-weight: bold;
+    margin: 18px 0 9px;
+}
+
+.setup-card select {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ccd5ed;
+    border-radius: 9px;
+    background: white;
+    color: #20264a;
+    }
 /* DASHBOARD */
 
 .dashboard, .quiz-page {
@@ -459,7 +513,35 @@ footer {
     </button>
 
 </section>
+<!-- CLASS AND BOARD SELECTION -->
 
+<section class="setup-page" id="setupPage">
+    <h2>Let's Get Started! 📚</h2>
+    <p>Choose your class and education board to begin learning with StudyMate AI.</p>
+
+    <div class="setup-card">
+        <label for="classSelect">Select Your Class</label>
+        <select id="classSelect">
+            <option value="">Choose your class</option>
+            <option value="6">Class 6</option>
+            <option value="7">Class 7</option>
+            <option value="8">Class 8</option>
+            <option value="9">Class 9</option>
+            <option value="10">Class 10</option>
+            <option value="11">Class 11</option>
+            <option value="12">Class 12</option>
+        </select>
+
+        <label for="boardSelect">Select Your Board</label>
+        <select id="boardSelect">
+            <option value="">Choose your board</option>
+            <option value="CBSE">CBSE</option>
+            <option value="MBOSE">Meghalaya Board (MBOSE)</option>
+        </select>
+
+        <button onclick="continueToDashboard()">Continue</button>
+    </div>
+</section>
 <!-- DASHBOARD -->
 
 <section class="dashboard" id="dashboard">
@@ -728,8 +810,24 @@ let answered = false;
 
 function openDashboard() {
     document.getElementById("welcome").style.display = "none";
-    document.getElementById("dashboard").style.display = "block";
+    document.getElementById("setupPage").style.display = "block";
+    document.getElementById("dashboard").style.display = "none";
     document.getElementById("quizPage").style.display = "none";
+}
+
+function continueToDashboard() {
+    const selectedClass = document.getElementById("classSelect").value;
+    const selectedBoard = document.getElementById("boardSelect").value;
+
+    if (selectedClass === "" || selectedBoard === "") {
+        alert("Please select your class and board first!");
+        return;
+    }
+
+    document.getElementById("setupPage").style.display = "none";
+    document.getElementById("dashboard").style.display = "block";
+
+    alert("Welcome to StudyMate AI! Class " + selectedClass + " | " + selectedBoard);
 }
 
 function openQuiz() {
