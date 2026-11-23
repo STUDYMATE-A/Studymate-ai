@@ -1,1009 +1,246 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>STUDYMATE AI</title>
-
+<meta name="theme-color" content="#172554">
+<title>STUDYMATE AI V2</title>
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background: #f3f6ff;
-    color: #20264a;
-}
-
-button, select {
-    font: inherit;
-}
-
-button {
-    cursor: pointer;
-    border: none;
-}
-
-header {
-    background: #101b3b;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-
-header h2 {
-    letter-spacing: 2px;
-}
-
-header p {
-    color: #b9c9ef;
-    margin-top: 6px;
-    font-size: 13px;
-}
-
-/* WELCOME PAGE */
-
-.welcome {
-    min-height: calc(100vh - 85px);
-    background: radial-gradient(circle at top, #263e7e, #101b3b 65%);
-    color: white;
-    text-align: center;
-    padding: 35px 20px 55px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.tag {
-    background: #ffffff18;
-    color: #9fcdff;
-    border: 1px solid #ffffff30;
-    border-radius: 30px;
-    padding: 9px 17px;
-    font-size: 12px;
-    margin-bottom: 20px;
-}
-
-/* CSS ROBOT MASCOT */
-
-.robot {
-    width: 190px;
-    height: 205px;
-    position: relative;
-    margin: 5px auto 25px;
-    animation: float 3s ease-in-out infinite;
-}
-
-.robot-head {
-    width: 125px;
-    height: 105px;
-    background: linear-gradient(145deg,#ffffff,#b8d6f5);
-    border: 5px solid #72b8f5;
-    border-radius: 38px;
-    position: absolute;
-    left: 32px;
-    top: 0;
-    box-shadow: 0 0 30px #52aaff80;
-    z-index: 2;
-}
-
-.antenna {
-    width: 5px;
-    height: 22px;
-    background: #71c5ff;
-    position: absolute;
-    top: -25px;
-    left: 56px;
-}
-
-.antenna:after {
-    content: "";
-    width: 13px;
-    height: 13px;
-    border-radius: 50%;
-    background: #58d5ff;
-    position: absolute;
-    top: -8px;
-    left: -4px;
-    box-shadow: 0 0 12px #58d5ff;
-}
-
-.eyes {
-    display: flex;
-    justify-content: center;
-    gap: 27px;
-    padding-top: 30px;
-}
-
-.eye {
-    width: 13px;
-    height: 17px;
-    border-radius: 50%;
-    background: #168bdf;
-    box-shadow: 0 0 10px #168bdf;
-}
-
-.smile {
-    width: 40px;
-    height: 21px;
-    background: #168bdf;
-    border: 2px solid #168bdf;
-    border-radius: 4px 4px 20px 20px;
-    margin: 10px auto 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.smile::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 6px;
-    background: white;
-    border-radius: 0 0 5px 5px;
-}
-
-.robot-body {
-    position: absolute;
-    width: 94px;
-    height: 76px;
-    background: linear-gradient(140deg,#ffffff,#a7c9ec);
-    border: 4px solid #72b8f5;
-    border-radius: 25px;
-    top: 108px;
-    left: 47px;
-    z-index: 1;
-}
-
-.chest-light {
-    width: 17px;
-    height: 17px;
-    background: #26bfff;
-    border-radius: 50%;
-    margin: 17px auto;
-    box-shadow: 0 0 14px #26bfff;
-}
-
-.robot-arm {
-    position: absolute;
-    width: 23px;
-    height: 54px;
-    background: #c7def4;
-    border: 3px solid #72b8f5;
-    border-radius: 20px;
-    top: 115px;
-}
-
-.arm-left {
-    left: 25px;
-    transform: rotate(25deg);
-}
-
-.arm-right {
-    right: 25px;
-    transform: rotate(-25deg);
-}
-
-.book {
-    position: absolute;
-    bottom: -5px;
-    left: 40px;
-    width: 110px;
-    height: 44px;
-    display: flex;
-    z-index: 3;
-    filter: drop-shadow(0 0 9px #42baff);
-}
-
-.book-page {
-    width: 50%;
-    height: 42px;
-    background: linear-gradient(140deg,#e4f5ff,#78bfff);
-    border: 2px solid #ffffff;
-    position: relative;
-}
-
-.book-page:first-child {
-    border-radius: 9px 2px 2px 5px;
-    transform: skewY(8deg);
-}
-
-.book-page:last-child {
-    border-radius: 2px 9px 5px 2px;
-    transform: skewY(-8deg);
-}
-
-.book-page:after {
-    content: "";
-    position: absolute;
-    width: 20px;
-    height: 2px;
-    background: #3987d8;
-    top: 13px;
-    left: 12px;
-    box-shadow: 0 7px #3987d8;
-}
-
-@keyframes float {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
-}
-
-.welcome h1 {
-    font-size: 34px;
-    margin-bottom: 15px;
-}
-
-.welcome p {
-    color: #cbd9f5;
-    line-height: 1.7;
-    max-width: 390px;
-    margin-bottom: 25px;
-}
-
-.primary-btn {
-    background: linear-gradient(120deg,#32a5ff,#3456d4);
-    color: white;
-    padding: 15px 35px;
-    border-radius: 30px;
-    font-weight: bold;
-    box-shadow: 0 5px 20px #258bff55;
-    transition: 0.3s;
-}
-
-.primary-btn:hover {
-    transform: translateY(-3px);
-}
-/* CLASS AND BOARD SELECTION */
-
-.setup-page {
-    display: none;
-    max-width: 650px;
-    margin: auto;
-    padding: 30px 20px;
-}
-
-.setup-page h2 {
-    margin-bottom: 10px;
-    color: #253b80;
-}
-
-.setup-page p {
-    color: #65708c;
-    line-height: 1.6;
-    margin-bottom: 22px;
-}
-
-.setup-card {
-    background: white;
-    padding: 23px;
-    border-radius: 17px;
-    box-shadow: 0 4px 15px #14285c12;
-}
-
-.setup-card label {
-    display: block;
-    font-weight: bold;
-    margin: 18px 0 9px;
-}
-
-.setup-card select {
-    width: 100%;
-    padding: 14px;
-    border: 1px solid #ccd5ed;
-    border-radius: 9px;
-    background: white;
-    color: #20264a;
-    }
-/* DASHBOARD */
-
-.dashboard, .quiz-page {
-    display: none;
-    padding: 28px 20px;
-    max-width: 850px;
-    margin: auto;
-}
-
-.dashboard h2 {
-    margin-bottom: 8px;
-}
-
-.subtitle {
-    color: #6d7693;
-    margin-bottom: 25px;
-    line-height: 1.5;
-}
-
-.card {
-    background: white;
-    padding: 23px;
-    border-radius: 17px;
-    margin-bottom: 16px;
-    box-shadow: 0 4px 15px #14285c12;
-    border: 1px solid #e9edfa;
-}
-
-.card h3 {
-    color: #3456c0;
-    margin-bottom: 9px;
-}
-
-.card p {
-    color: #65708c;
-    line-height: 1.5;
-}
-
-.quiz-card {
-    border-left: 5px solid #426cf0;
-}
-
-.card-btn {
-    background: #3456c0;
-    color: white;
-    padding: 11px 22px;
-    border-radius: 9px;
-    margin-top: 15px;
-}
-
-/* QUIZ PAGE */
-
-.quiz-page h2 {
-    margin-bottom: 12px;
-}
-
-.quiz-box {
-    background: white;
-    padding: 23px;
-    border-radius: 17px;
-    box-shadow: 0 4px 15px #14285c12;
-    margin-top: 20px;
-}
-
-.quiz-box label {
-    display: block;
-    margin: 18px 0 8px;
-    font-weight: bold;
-}
-
-.quiz-box select {
-    width: 100%;
-    padding: 13px;
-    border: 1px solid #ccd5ed;
-    border-radius: 9px;
-    background: white;
-    color: #20264a;
-}
-
-.question {
-    font-size: 18px;
-    font-weight: bold;
-    line-height: 1.5;
-    margin: 20px 0;
-}
-
-.option {
-    display: block;
-    width: 100%;
-    text-align: left;
-    background: #f1f4ff;
-    color: #20264a;
-    border: 2px solid transparent;
-    padding: 14px;
-    margin: 10px 0;
-    border-radius: 10px;
-}
-
-.option.selected {
-    border-color: #3456c0;
-    background: #e1e9ff;
-}
-
-.option:disabled {
-    cursor: default;
-}
-
-.feedback {
-    margin-top: 15px;
-    line-height: 1.6;
-}
-
-.progress {
-    color: #52648e;
-    font-size: 13px;
-}
-
-.secondary-btn {
-    background: #e4eaff;
-    color: #3456c0;
-    padding: 12px 20px;
-    border-radius: 9px;
-    margin: 8px 5px 0 0;
-}
-
-.result {
-    text-align: center;
-    padding: 20px 5px;
-}
-
-.result h2 {
-    color: #3456c0;
-    margin: 15px 0;
-}
-
-footer {
-    text-align: center;
-    color: #8790a8;
-    padding: 25px;
-    font-size: 12px;
-}
-
-@media(max-width:480px) {
-    .welcome h1 {
-        font-size: 28px;
-    }
-
-    .robot {
-        transform: scale(.9);
-        margin-bottom: 15px;
-    }
-
-    .dashboard, .quiz-page {
-        padding: 23px 15px;
-    }
-}
+:root{--navy:#172554;--blue:#3867f5;--purple:#7656e8;--ink:#17213c;--muted:#66728d;--bg:#f4f6ff;--line:#e5e9f5;--white:#fff;--shadow:0 12px 35px #26376b12}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--ink)}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}.hidden{display:none!important}
+.topbar{height:68px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 5%;position:sticky;top:0;z-index:5}.brand{display:flex;align-items:center;gap:10px;font-weight:850;letter-spacing:.4px;color:var(--navy)}.brand-mark{width:38px;height:38px;border-radius:13px;background:linear-gradient(135deg,var(--blue),var(--purple));display:grid;place-items:center;color:#fff;font-size:20px}.top-note{font-size:12px;color:var(--muted)}
+main{max-width:1080px;margin:auto;padding:28px 20px 60px}.welcome{min-height:calc(100vh - 68px);display:grid;place-items:center;padding:35px 20px;background:radial-gradient(circle at 80% 20%,#dce5ff,transparent 34%),linear-gradient(135deg,#f8f9ff,#edf1ff)}.hero{max-width:760px;text-align:center}.pill{display:inline-block;padding:8px 14px;border-radius:30px;background:#e8edff;color:#405bd0;font-size:12px;font-weight:750;letter-spacing:.6px}.hero-icon{width:104px;height:104px;margin:25px auto 22px;border-radius:30px;background:linear-gradient(145deg,#467bff,#8059e9);display:grid;place-items:center;color:white;font-size:48px;box-shadow:0 18px 38px #526ce544}.hero h1{font-size:clamp(34px,7vw,58px);line-height:1.08;margin:0 0 16px;color:var(--navy)}.hero p{max-width:570px;margin:0 auto 26px;color:var(--muted);line-height:1.7;font-size:16px}.primary{background:linear-gradient(120deg,var(--blue),var(--purple));color:#fff;padding:14px 23px;border-radius:13px;font-weight:750;box-shadow:0 8px 20px #4569df30}.primary:hover{filter:brightness(1.06)}.secondary{background:#edf1ff;color:#3656c7;padding:11px 16px;border-radius:11px;font-weight:700}.setup-wrap{max-width:650px;margin:25px auto}.panel,.card{background:#fff;border:1px solid var(--line);border-radius:19px;padding:24px;box-shadow:var(--shadow)}h1,h2,h3,p{margin-top:0}.muted{color:var(--muted);line-height:1.6}.field{margin:18px 0}.field label{display:block;font-weight:750;font-size:14px;margin-bottom:8px}.field select,.field input,.field textarea,.chat-input{width:100%;padding:13px 14px;border:1px solid #d9dfef;border-radius:11px;background:#fff;color:var(--ink);outline:none}.field select:focus,.field input:focus,.field textarea:focus,.chat-input:focus{border-color:var(--blue);box-shadow:0 0 0 3px #3867f51a}.field textarea{min-height:110px;resize:vertical}.row{display:flex;gap:12px;flex-wrap:wrap}.row>*{flex:1;min-width:140px}
+.dashboard-head{display:flex;justify-content:space-between;align-items:flex-start;gap:15px;flex-wrap:wrap;margin-bottom:22px}.dashboard-head h1{margin-bottom:7px;color:var(--navy)}.profile-chip{background:#e9edff;color:#3e56bb;border-radius:30px;padding:9px 13px;font-size:13px;font-weight:750}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0}.stat{background:#fff;border:1px solid var(--line);border-radius:16px;padding:17px}.stat b{display:block;font-size:24px;color:var(--navy);margin-top:7px}.stat span{font-size:12px;color:var(--muted)}.feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}.feature{background:#fff;border:1px solid var(--line);border-radius:17px;padding:21px;box-shadow:var(--shadow)}.feature .emoji{font-size:25px}.feature h3{margin:12px 0 7px;color:var(--navy)}.feature p{font-size:13px;color:var(--muted);line-height:1.55;min-height:40px}.feature button{margin-top:5px}.section-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px}.section-head h2{margin:0;color:var(--navy)}.section-head .secondary{margin-left:auto}.item{padding:14px 0;border-bottom:1px solid var(--line)}.item:last-child{border-bottom:0}.item small{color:var(--muted)}.task-done{text-decoration:line-through;color:#8992a8}.note-output{white-space:pre-wrap;background:#f7f8ff;border:1px solid var(--line);padding:15px;border-radius:12px;line-height:1.6}.notice{background:#fff8e7;border:1px solid #f5dfaa;color:#76561a;padding:14px;border-radius:12px;font-size:13px;line-height:1.5}.option{display:block;width:100%;text-align:left;padding:13px;margin:9px 0;background:#f2f5ff;border:1px solid transparent;border-radius:11px;color:var(--ink)}.option:hover{border-color:#9eafff}.option.correct{background:#e5f8ed;border-color:#69bd8c}.option.wrong{background:#fff0f0;border-color:#e49a9a}.footer{text-align:center;color:#8992a8;font-size:12px;padding:28px 10px}
+@media(max-width:650px){.topbar{padding:0 16px}.top-note{display:none}main{padding:22px 14px 45px}.stats{grid-template-columns:1fr 1fr}.feature-grid{grid-template-columns:1fr}.panel,.card{padding:19px}.hero p{font-size:14px}}
 </style>
 </head>
-
 <body>
-
-<header>
-    <h2>STUDYMATE AI</h2>
-    <p>Your Personal AI Study Companion</p>
+<header class="topbar">
+  <div class="brand"><span class="brand-mark">✦</span><span>STUDYMATE AI</span></div>
+  <span class="top-note">Your personal study companion · V2</span>
 </header>
 
-<!-- WELCOME -->
-
-<section class="welcome" id="welcome">
-
-    <div class="tag">✦ YOUR SMART LEARNING PARTNER ✦</div>
-
-    <div class="robot">
-
-        <div class="antenna"></div>
-
-        <div class="robot-head">
-            <div class="eyes">
-                <div class="eye"></div>
-                <div class="eye"></div>
-            </div>
-            <div class="smile"></div>
-        </div>
-
-        <div class="robot-arm arm-left"></div>
-        <div class="robot-arm arm-right"></div>
-
-        <div class="robot-body">
-            <div class="chest-light"></div>
-        </div>
-
-        <div class="book">
-            <div class="book-page"></div>
-            <div class="book-page"></div>
-        </div>
-
-    </div>
-
-    <h1>Welcome to STUDYMATE AI!</h1>
-
-    <p>
-        Meet your smart study companion.
-        Learn smarter, understand better
-        and achieve your dreams with confidence.
-    </p>
-
-<button class="primary-btn" onclick="openDashboard()">
-    Get Started →
-</button>
-
-</section>
-<!-- CLASS AND BOARD SELECTION -->
-
-<section class="setup-page" id="setupPage">
-    <h2>Let's Get Started! 📚</h2>
-    <p>Choose your class and education board to begin learning with StudyMate AI.</p>
-
-    <div class="setup-card">
-        <label for="classSelect">Select Your Class</label>
-        <select id="classSelect">
-            <option value="">Choose your class</option>
-            <option value="6">Class 6</option>
-            <option value="7">Class 7</option>
-            <option value="8">Class 8</option>
-            <option value="9">Class 9</option>
-            <option value="10">Class 10</option>
-            <option value="11">Class 11</option>
-            <option value="12">Class 12</option>
-        </select>
-
-        <label for="boardSelect">Select Your Board</label>
-        <select id="boardSelect">
-            <option value="">Choose your board</option>
-            <option value="CBSE">CBSE</option>
-            <option value="MBOSE">Meghalaya Board (MBOSE)</option>
-        </select>
-
-        <button onclick="continueToDashboard()">Continue</button>
-    </div>
-</section>
-<!-- DASHBOARD -->
-
-<section class="dashboard" id="dashboard">
-
-    <h2>Your Learning Dashboard 📚</h2>
-
-    <p class="subtitle">
-        Welcome, learner! What would you like to study today?
-    </p>
-    <div class="card">
-    <h3>📚 Your Subjects</h3>
-    <p id="subjectInfo">
-        Choose a subject to begin learning.
-    </p>
-
-    <select id="dashboardSubject">
-        <option value="">Select your subject</option>
-    </select>
-    </div>
-
-    <div class="card">
-        <h3>📖 Study Notes</h3>
-        <p>Learn and understand your subjects.</p>
-    </div>
-
-    <div class="card">
-        <h3>🤖 AI Study Assistant</h3>
-        <p>Your smart learning helper. More features coming soon!</p>
-    </div>
-
-    <div class="card quiz-card">
-        <h3>✍️ Practice Quiz</h3>
-        <p>Test your knowledge and improve your learning.</p>
-        <button class="card-btn" onclick="openQuiz()">
-            Start Quiz →
-        </button>
-    </div>
-
-    <div class="card">
-        <h3>🎯 Exam Preparation</h3>
-        <p>Prepare for your exams with confidence.</p>
-    </div>
-
+<section id="welcome" class="welcome">
+  <div class="hero">
+    <span class="pill">✦ LEARN SMARTER, GROW FASTER ✦</span>
+    <div class="hero-icon">📚</div>
+    <h1>Welcome to<br>STUDYMATE AI</h1>
+    <p>A friendly place to organise your learning, create notes, practise questions and plan your study time.</p>
+    <button class="primary" onclick="showPage('setupPage')">Get Started&nbsp; →</button>
+  </div>
 </section>
 
-<!-- QUIZ -->
-
-<section class="quiz-page" id="quizPage">
-
-    <button class="secondary-btn" onclick="backToDashboard()">
-        ← Dashboard
-    </button>
-
-    <h2>✍️ Practice Quiz</h2>
-
-    <p class="subtitle">
-        Choose your subject and challenge yourself!
-    </p>
-
-    <div class="quiz-box" id="setup">
-
-        <label for="subject">Choose Subject</label>
-
-        <select id="subject">
-            <option value="English">English</option>
-            <option value="Education">Education</option>
-            <option value="Political Science">Political Science</option>
-            <option value="Computer Science">Computer Science</option>
-        </select>
-
-        <br><br>
-
-        <button class="primary-btn" onclick="startQuiz()">
-            Start Quiz 🚀
-        </button>
-
+<main id="setupPage" class="hidden">
+  <div class="setup-wrap">
+    <div class="section-head"><h2>Let's set up your study space</h2></div>
+    <p class="muted">Choose your class, board and stream. You can change these choices later by refreshing the setup.</p>
+    <div class="panel">
+      <div class="field"><label for="classSelect">Your class</label><select id="classSelect"><option value="">Choose class</option><option>Class 6</option><option>Class 7</option><option>Class 8</option><option>Class 9</option><option>Class 10</option><option>Class 11</option><option>Class 12</option></select></div>
+      <div class="field"><label for="boardSelect">Education board</label><select id="boardSelect"><option value="">Choose board</option><option value="MBOSE">MBOSE</option><option value="CBSE">CBSE</option><option value="Other">Other</option></select></div>
+      <div class="field hidden" id="streamField"><label for="streamSelect">Stream (Class 11–12)</label><select id="streamSelect"><option value="">Choose stream</option><option>Arts</option><option>Science</option><option>Commerce</option></select></div>
+      <div class="field"><label for="studentName">Your name (optional)</label><input id="studentName" maxlength="35" placeholder="Enter your name"></div>
+      <button class="primary" style="width:100%" onclick="finishSetup()">Create my dashboard&nbsp; →</button>
+      <p id="setupError" class="muted" style="color:#c33;margin:12px 0 0" aria-live="polite"></p>
     </div>
+  </div>
+</main>
 
-    <div class="quiz-box" id="questionBox" style="display:none">
+<main id="dashboardPage" class="hidden">
+  <div class="dashboard-head"><div><h1 id="helloTitle">Your learning dashboard</h1><p class="muted" id="profileText"></p></div><span class="profile-chip">✦ STUDENT SPACE</span></div>
+  <div class="stats">
+    <div class="stat"><span>MY SUBJECTS</span><b id="subjectCount">0</b></div>
+    <div class="stat"><span>SAVED NOTES</span><b id="noteCount">0</b></div>
+    <div class="stat"><span>PLANNER TASKS DONE</span><b id="doneCount">0</b></div>
+  </div>
+  <div class="section-head"><h2>What would you like to do?</h2></div>
+  <div class="feature-grid">
+    <article class="feature"><div class="emoji">📖</div><h3>Study Notes</h3><p>Write, save and review your own subject notes on this device.</p><button class="secondary" onclick="openTool('notesPage')">Open notes →</button></article>
+    <article class="feature"><div class="emoji">🧠</div><h3>Practice Quiz</h3><p>Try a short sample quiz and check your answers.</p><button class="secondary" onclick="openTool('quizPage')">Start quiz →</button></article>
+    <article class="feature"><div class="emoji">🗓️</div><h3>Study Planner</h3><p>Add study tasks and tick them off when completed.</p><button class="secondary" onclick="openTool('plannerPage')">Open planner →</button></article>
+    <article class="feature"><div class="emoji">🤖</div><h3>AI Study Assistant</h3><p>See what is needed to connect a real AI tutor safely.</p><button class="secondary" onclick="openTool('assistantPage')">Explore assistant →</button></article>
+  </div>
+  <div class="card" style="margin-top:16px"><h3>Your subjects</h3><p class="muted" id="subjectList"></p></div>
+</main>
 
-        <p class="progress" id="progress"></p>
+<main id="notesPage" class="hidden">
+  <div class="section-head"><h2>📖 Study Notes</h2><button class="secondary" onclick="backHome()">← Dashboard</button></div>
+  <div class="panel">
+    <div class="field"><label for="noteSubject">Subject</label><select id="noteSubject"></select></div>
+    <div class="field"><label for="noteTitle">Note title</label><input id="noteTitle" maxlength="70" placeholder="e.g. Chapter 1 – Introduction"></div>
+    <div class="field"><label for="noteBody">Your notes</label><textarea id="noteBody" maxlength="8000" placeholder="Write your important points here..."></textarea></div>
+    <button class="primary" onclick="saveNote()">Save note</button>
+    <p id="noteMessage" class="muted" aria-live="polite" style="margin:12px 0 0"></p>
+  </div>
+  <div class="card" style="margin-top:16px"><h3>Saved notes</h3><div id="notesList"></div></div>
+</main>
 
-        <div class="question" id="question"></div>
+<main id="quizPage" class="hidden">
+  <div class="section-head"><h2>🧠 Practice Quiz</h2><button class="secondary" onclick="backHome()">← Dashboard</button></div>
+  <div class="panel">
+    <p class="muted">A short general knowledge and study-skills sample quiz. More subject-wise questions can be added as the project grows.</p>
+    <div id="quizArea"><p id="quizProgress" class="muted"></p><h3 id="quizQuestion"></h3><div id="quizOptions"></div><p id="quizFeedback" class="muted" aria-live="polite"></p><button id="nextQuestion" class="primary hidden" onclick="nextQuizQuestion()">Next question →</button></div>
+    <div id="quizResult" class="hidden"><h2 id="quizScore"></h2><p class="muted">Keep practising. Understanding matters more than memorising.</p><button class="primary" onclick="startQuiz()">Try again</button></div>
+  </div>
+</main>
 
-        <div id="options"></div>
+<main id="plannerPage" class="hidden">
+  <div class="section-head"><h2>🗓️ Study Planner</h2><button class="secondary" onclick="backHome()">← Dashboard</button></div>
+  <div class="panel">
+    <div class="field"><label for="taskText">Study task</label><input id="taskText" maxlength="100" placeholder="e.g. Revise Education chapter 3"></div>
+    <div class="field"><label for="taskDate">Date</label><input id="taskDate" type="date"></div>
+    <button class="primary" onclick="addTask()">Add task</button>
+    <p id="taskMessage" class="muted" aria-live="polite" style="margin:12px 0 0"></p>
+  </div>
+  <div class="card" style="margin-top:16px"><h3>My tasks</h3><div id="taskList"></div></div>
+</main>
 
-        <p class="feedback" id="feedback"></p>
+<main id="assistantPage" class="hidden">
+  <div class="section-head"><h2>🤖 AI Study Assistant</h2><button class="secondary" onclick="backHome()">← Dashboard</button></div>
+  <div class="panel">
+    <div class="hero-icon" style="width:70px;height:70px;margin:0 0 18px;border-radius:20px;font-size:32px">✦</div>
+    <h2>Your AI tutor is planned for the next stage.</h2>
+    <p class="muted">This version is a working website prototype. A real AI assistant needs a secure server connection to an AI service. We must keep any secret API key on that server—not inside this public website code.</p>
+    <div class="notice">AI connection is not active yet. This screen does not pretend to generate AI answers. We can connect a real tutor after the core website is stable.</div>
+  </div>
+</main>
 
-        <button class="primary-btn" id="nextBtn"
-        onclick="nextQuestion()" style="display:none">
-            Next Question →
-        </button>
-
-    </div>
-
-    <div class="quiz-box result" id="resultBox"
-    style="display:none">
-
-        <h2>🎉 Quiz Completed!</h2>
-
-        <h1 id="score"></h1>
-
-        <p id="resultMessage"></p>
-
-        <br>
-
-        <button class="primary-btn" onclick="restartQuiz()">
-            Try Again
-        </button>
-
-        <button class="secondary-btn" onclick="backToDashboard()">
-            Dashboard
-        </button>
-
-    </div>
-
-</section>
-
-<footer>
-    © 2026 STUDYMATE AI | Learn Smarter, Grow Faster.
-</footer>
+<footer class="footer">© 2026 STUDYMATE AI · Learn with curiosity and confidence.</footer>
 
 <script>
-
-const quizzes = {
-
-    "English": [
-        {
-            q: "Which word is a noun?",
-            o: ["Beautiful", "Happiness", "Quickly", "Run"],
-            a: 1,
-            e: "Happiness is a noun because it names a feeling or state."
-        },
-        {
-            q: "Choose the correct sentence.",
-            o: [
-                "She go to school.",
-                "She going school.",
-                "She goes to school.",
-                "She gone school."
-            ],
-            a: 2,
-            e: "She goes to school is correct. The verb agrees with the singular subject."
-        },
-        {
-            q: "What is the opposite of ancient?",
-            o: ["Modern", "Old", "Historic", "Past"],
-            a: 0,
-            e: "Modern means relating to the present or recent times."
-        },
-        {
-            q: "Which is a pronoun?",
-            o: ["School", "They", "Happy", "Beautiful"],
-            a: 1,
-            e: "They is a pronoun used in place of a noun."
-        }
-    ],
-
-    "Education": [
-        {
-            q: "What is education?",
-            o: [
-                "Only reading books",
-                "A process of learning and development",
-                "Only passing examinations",
-                "Only classroom teaching"
-            ],
-            a: 1,
-            e: "Education is a process that develops knowledge, skills and understanding."
-        },
-        {
-            q: "Which is a formal agency of education?",
-            o: ["Family", "Peer group", "School", "Community"],
-            a: 2,
-            e: "School is a formal educational institution."
-        },
-        {
-            q: "Who is known as the father of modern education?",
-            o: ["John Dewey", "Plato", "Aristotle", "Socrates"],
-            a: 0,
-            e: "John Dewey is widely associated with modern progressive education."
-        },
-        {
-            q: "Which is an important aim of education?",
-            o: [
-                "Memorising without understanding",
-                "Avoiding responsibility",
-                "All-round development",
-                "Only gaining marks"
-            ],
-            a: 2,
-            e: "Education supports the intellectual, social, emotional and physical development of a person."
-        }
-    ],
-
-    "Political Science": [
-        {
-            q: "What is the supreme law of India?",
-            o: ["Parliament", "The Constitution", "The Supreme Court", "The Cabinet"],
-            a: 1,
-            e: "The Constitution is the supreme law of India."
-        },
-        {
-            q: "What does democracy mean?",
-            o: [
-                "Rule by one person",
-                "Rule by the military",
-                "Government by the people",
-                "Rule by a king"
-            ],
-            a: 2,
-            e: "Democracy is a system in which people participate in governing, directly or through representatives."
-        },
-        {
-            q: "Which is a fundamental right in India?",
-            o: [
-                "Right to Equality",
-                "Right to Rule",
-                "Right to Become President",
-                "Right to Ignore Laws"
-            ],
-            a: 0,
-            e: "The Right to Equality is guaranteed under Articles 14–18 of the Indian Constitution."
-        },
-        {
-            q: "Who is the constitutional head of India?",
-            o: ["Prime Minister", "President", "Chief Justice", "Governor"],
-            a: 1,
-            e: "The President is the constitutional head of the Indian Union."
-        }
-    ],
-
-    "Computer Science": [
-        {
-            q: "What does CPU stand for?",
-            o: [
-                "Central Processing Unit",
-                "Computer Personal Unit",
-                "Central Program Utility",
-                "Control Processing User"
-            ],
-            a: 0,
-            e: "CPU stands for Central Processing Unit."
-        },
-        {
-            q: "Which language is used in our project?",
-            o: ["Python", "HTML", "C++", "Java"],
-            a: 1,
-            e: "HTML is used to structure the content of our website."
-        },
-        {
-            q: "Which of these is an input device?",
-            o: ["Monitor", "Printer", "Keyboard", "Speaker"],
-            a: 2,
-            e: "A keyboard allows users to enter information into a computer."
-        },
-        {
-            q: "What does WWW stand for?",
-            o: [
-                "World Wide Web",
-                "World Web Window",
-                "Wide World Website",
-                "Web World Work"
-            ],
-            a: 0,
-            e: "WWW stands for World Wide Web."
-        }
-    ]
-
+"use strict";
+const STORAGE = {profile:"studymate_v2_profile",notes:"studymate_v2_notes",tasks:"studymate_v2_tasks"};
+const subjectsByLevel = {
+  "Class 6":["English","Mathematics","Science","Social Science","Second Language","Computer Studies"],
+  "Class 7":["English","Mathematics","Science","Social Science","Second Language","Computer Studies"],
+  "Class 8":["English","Mathematics","Science","Social Science","Second Language","Computer Studies"],
+  "Class 9":["English","Mathematics","Science","Social Science","Second Language","Computer Studies"],
+  "Class 10":["English","Mathematics","Science","Social Science","Second Language","Computer Studies"],
+  "Class 11":{
+    Arts:["English","MIL","Education","Political Science","Computer Science","Elective Khasi"],
+    Science:["English","Physics","Chemistry","Mathematics","Biology","Computer Science"],
+    Commerce:["English","Accountancy","Business Studies","Economics","Mathematics","Computer Science"]
+  },
+  "Class 12":{
+    Arts:["English","MIL","Education","Political Science","Computer Science","Elective Khasi"],
+    Science:["English","Physics","Chemistry","Mathematics","Biology","Computer Science"],
+    Commerce:["English","Accountancy","Business Studies","Economics","Mathematics","Computer Science"]
+  }
 };
-
-let currentQuiz = [];
-let currentQuestion = 0;
-let score = 0;
-let answered = false;
-
-function openDashboard() {
-    
+let profile = null;
+let quizIndex = 0, quizPoints = 0, quizAnswered = false;
+const questions = [
+ {q:"Which habit can help you understand a difficult topic?",o:["Read it once only","Break it into smaller parts and practise","Avoid asking questions","Study while distracted"],a:1,e:"Breaking a topic into smaller parts makes it easier to understand."},
+ {q:"What is the main purpose of taking notes?",o:["To copy every word","To collect key ideas in your own words","To fill pages","To avoid revision"],a:1,e:"Good notes capture important ideas in a form that is useful for revision."},
+ {q:"Which of these is a web browser?",o:["HTML","Chrome","Python","Keyboard"],a:1,e:"Chrome is a web browser used to visit websites."},
+ {q:"What does CPU stand for?",o:["Central Processing Unit","Computer Personal Utility","Central Program User","Control Power Unit"],a:0,e:"CPU stands for Central Processing Unit."},
+ {q:"What is a realistic study plan?",o:["Study every subject all night","Set clear tasks with breaks","Never take breaks","Plan without checking time"],a:1,e:"A realistic plan uses manageable tasks and includes rest."}
+];
+function showPage(id){
+ document.querySelectorAll("main,.welcome").forEach(el=>el.classList.add("hidden"));
+ document.getElementById(id).classList.remove("hidden");
+ window.scrollTo({top:0,behavior:"instant"});
 }
-function continueToDashboard() {
-    const selectedClass = document.getElementById("classSelect").value;
-    const selectedBoard = document.getElementById("boardSelect").value;
-
-    if (selectedClass === "" || selectedBoard === "") {
-        alert("Please select your class and board first!");
-        return;
-    }
-
-    const subjects = {
-        "6": ["English", "Mathematics", "Science", "Social Science", "Languages", "Computer Studies"],
-        "7": ["English", "Mathematics", "Science", "Social Science", "Languages", "Computer Studies"],
-        "8": ["English", "Mathematics", "Science", "Social Science", "Languages", "Computer Studies"],
-        "9": ["English", "Mathematics", "Science", "Social Science", "Languages", "Computer Studies"],
-        "10": ["English", "Mathematics", "Science", "Social Science", "Languages", "Computer Studies"]
-    };
-
-    const subjectList = document.getElementById("dashboardSubject");
-
-    subjectList.innerHTML = '<option value="">Select your subject</option>';
-
-    subjects[selectedClass].forEach(subject => {
-        const option = document.createElement("option");
-        option.value = subject;
-        option.textContent = subject;
-        subjectList.appendChild(option);
-    });
-
-    document.getElementById("subjectInfo").textContent =
-        "Class " + selectedClass + " | " + selectedBoard;
-
-    document.getElementById("setupPage").style.display = "none";
-    document.getElementById("dashboard").style.display = "block";
-
-    window.scrollTo(0, 0);
+document.getElementById("classSelect").addEventListener("change",()=>{
+ const show=["Class 11","Class 12"].includes(document.getElementById("classSelect").value);
+ document.getElementById("streamField").classList.toggle("hidden",!show);
+});
+function finishSetup(){
+ const cls=document.getElementById("classSelect").value;
+ const board=document.getElementById("boardSelect").value;
+ const stream=document.getElementById("streamSelect").value;
+ const name=document.getElementById("studentName").value.trim();
+ const err=document.getElementById("setupError");
+ if(!cls||!board){err.textContent="Please choose your class and board.";return;}
+ if(["Class 11","Class 12"].includes(cls)&&!stream){err.textContent="Please choose your stream.";return;}
+ let subjects=Array.isArray(subjectsByLevel[cls])?subjectsByLevel[cls]:subjectsByLevel[cls][stream];
+ profile={name,cls,board,stream,subjects};
+ localStorage.setItem(STORAGE.profile,JSON.stringify(profile));
+ renderDashboard();showPage("dashboardPage");
 }
-
-    document.getElementById("setupPage").style.display = "none";
-    document.getElementById("dashboard").style.display = "block";
-
-    alert("Welcome to StudyMate AI! Class " + selectedClass + " | " + selectedBoard);
+function renderDashboard(){
+ document.getElementById("helloTitle").textContent=profile.name?"Welcome, "+profile.name+"!":"Your learning dashboard";
+ document.getElementById("profileText").textContent=profile.cls+" · "+profile.board+(profile.stream?" · "+profile.stream:"");
+ document.getElementById("subjectCount").textContent=profile.subjects.length;
+ document.getElementById("subjectList").textContent=profile.subjects.join(" · ");
+ const select=document.getElementById("noteSubject");select.innerHTML="";
+ profile.subjects.forEach(s=>{const o=document.createElement("option");o.value=s;o.textContent=s;select.appendChild(o);});
+ updateStats();
 }
-
-function openQuiz() {
-    document.getElementById("dashboard").style.display = "none";
-    document.getElementById("quizPage").style.display = "block";
-
-    document.getElementById("setup").style.display = "block";
-    document.getElementById("questionBox").style.display = "none";
-    document.getElementById("resultBox").style.display = "none";
-
-    window.scrollTo(0,0);
+function openTool(id){showPage(id);if(id==="notesPage")renderNotes();if(id==="plannerPage")renderTasks();if(id==="quizPage")startQuiz();}
+function backHome(){renderDashboard();showPage("dashboardPage");}
+function getStored(key){try{return JSON.parse(localStorage.getItem(key)||"[]");}catch(e){return [];}}
+function saveNote(){
+ const title=document.getElementById("noteTitle").value.trim(),body=document.getElementById("noteBody").value.trim(),subject=document.getElementById("noteSubject").value;
+ const msg=document.getElementById("noteMessage");
+ if(!title||!body){msg.textContent="Please enter a title and your notes.";return;}
+ const notes=getStored(STORAGE.notes);notes.unshift({id:Date.now(),title,body,subject,created:new Date().toLocaleDateString()});
+ localStorage.setItem(STORAGE.notes,JSON.stringify(notes));
+ document.getElementById("noteTitle").value="";document.getElementById("noteBody").value="";
+ msg.textContent="Note saved on this device.";renderNotes();updateStats();
 }
-
-function backToDashboard() {
-    openDashboard();
-    window.scrollTo(0,0);
+function renderNotes(){
+ const notes=getStored(STORAGE.notes),list=document.getElementById("notesList");list.innerHTML="";
+ if(!notes.length){list.innerHTML='<p class="muted">No saved notes yet. Create your first note above.</p>';return;}
+ notes.forEach(n=>{
+  const div=document.createElement("div");div.className="item";
+  const h=document.createElement("h3");h.textContent=n.title;
+  const small=document.createElement("small");small.textContent=n.subject+" · "+n.created;
+  const p=document.createElement("p");p.className="note-output";p.textContent=n.body;
+  const del=document.createElement("button");del.className="secondary";del.textContent="Delete";del.onclick=()=>{localStorage.setItem(STORAGE.notes,JSON.stringify(getStored(STORAGE.notes).filter(x=>x.id!==n.id)));renderNotes();updateStats();};
+  div.append(h,small,p,del);list.appendChild(div);
+ });
 }
-
-function startQuiz() {
-
-    const subject = document.getElementById("subject").value;
-
-    currentQuiz = quizzes[subject];
-    currentQuestion = 0;
-    score = 0;
-
-    document.getElementById("setup").style.display = "none";
-    document.getElementById("resultBox").style.display = "none";
-    document.getElementById("questionBox").style.display = "block";
-
-    showQuestion();
-    window.scrollTo(0,0);
+function addTask(){
+ const textValue=document.getElementById("taskText").value.trim(),date=document.getElementById("taskDate").value,msg=document.getElementById("taskMessage");
+ if(!textValue){msg.textContent="Please enter a task first.";return;}
+ const tasks=getStored(STORAGE.tasks);tasks.push({id:Date.now(),text:textValue,date,done:false});
+ localStorage.setItem(STORAGE.tasks,JSON.stringify(tasks));document.getElementById("taskText").value="";msg.textContent="Task added.";renderTasks();updateStats();
 }
-
-function showQuestion() {
-
-    answered = false;
-
-    const item = currentQuiz[currentQuestion];
-
-    document.getElementById("progress").textContent =
-        "Question " + (currentQuestion + 1) +
-        " of " + currentQuiz.length;
-
-    document.getElementById("question").textContent = item.q;
-
-    document.getElementById("feedback").textContent = "";
-
-    document.getElementById("nextBtn").style.display = "none";
-
-    const optionsBox = document.getElementById("options");
-    optionsBox.innerHTML = "";
-
-    item.o.forEach((option,index) => {
-
-        const btn = document.createElement("button");
-
-        btn.className = "option";
-        btn.textContent = option;
-
-        btn.onclick = function() {
-            selectAnswer(index,btn);
-        };
-
-        optionsBox.appendChild(btn);
-
-    });
+function renderTasks(){
+ const tasks=getStored(STORAGE.tasks),list=document.getElementById("taskList");list.innerHTML="";
+ if(!tasks.length){list.innerHTML='<p class="muted">No tasks yet. Add a study task above.</p>';return;}
+ tasks.forEach(t=>{
+  const div=document.createElement("div");div.className="item";
+  const label=document.createElement("label");label.style.display="flex";label.style.gap="10px";label.style.alignItems="center";
+  const cb=document.createElement("input");cb.type="checkbox";cb.checked=t.done;cb.onchange=()=>{const all=getStored(STORAGE.tasks);const item=all.find(x=>x.id===t.id);if(item)item.done=cb.checked;localStorage.setItem(STORAGE.tasks,JSON.stringify(all));renderTasks();updateStats();};
+  const span=document.createElement("span");span.textContent=t.text;if(t.done)span.className="task-done";
+  label.append(cb,span);div.appendChild(label);
+  const small=document.createElement("small");small.textContent=t.date||"No date set";div.appendChild(small);
+  const del=document.createElement("button");del.className="secondary";del.textContent="Delete";del.style.marginLeft="10px;del.onclick=()=>{localStorage.setItem(STORAGE.tasks,JSON.stringify(getStored(STORAGE.tasks).filter(x=>x.id!==t.id)));renderTasks();updateStats();};div.appendChild(del);list.appendChild(div);
+ });
 }
-
-function selectAnswer(index,selectedButton) {
-
-    if(answered) return;
-
-    answered = true;
-
-    const item = currentQuiz[currentQuestion];
-
-    const allOptions = document.querySelectorAll(".option");
-
-    allOptions.forEach(btn => {
-        btn.disabled = true;
-    });
-
-    if(index === item.a) {
-        score++;
-        selectedButton.classList.add("selected");
-        document.getElementById("feedback").textContent =
-            "✅ Correct! " + item.e;
-    } else {
-        selectedButton.classList.add("selected");
-        document.getElementById("feedback").textContent =
-            "❌ Not quite. " + item.e;
-    }
-
-    const nextBtn = document.getElementById("nextBtn");
-
-    nextBtn.style.display = "inline-block";
-
-    if(currentQuestion === currentQuiz.length - 1) {
-        nextBtn.textContent = "See Results";
-    }
+function updateStats(){
+ document.getElementById("noteCount").textContent=getStored(STORAGE.notes).length;
+ document.getElementById("doneCount").textContent=getStored(STORAGE.tasks).filter(t=>t.done).length;
 }
-
-function nextQuestion() {
-
-    currentQuestion++;
-
-    if(currentQuestion < currentQuiz.length) {
-        showQuestion();
-    } else {
-        showResults();
-    }
+function startQuiz(){quizIndex=0;quizPoints=0;quizAnswered=false;document.getElementById("quizArea").classList.remove("hidden");document.getElementById("quizResult").classList.add("hidden");renderQuestion();}
+function renderQuestion(){
+ const q=questions[quizIndex];quizAnswered=false;
+ document.getElementById("quizProgress").textContent="Question "+(quizIndex+1)+" of "+questions.length;
+ document.getElementById("quizQuestion").textContent=q.q;
+ document.getElementById("quizFeedback").textContent="";
+ document.getElementById("nextQuestion").classList.add("hidden");
+ const box=document.getElementById("quizOptions");box.innerHTML="";
+ q.o.forEach((answer,i)=>{const b=document.createElement("button");b.className="option";b.textContent=answer;b.onclick=()=>chooseAnswer(i,b);box.appendChild(b);});
 }
-
-function showResults() {
-
-    document.getElementById("questionBox").style.display = "none";
-    document.getElementById("resultBox").style.display = "block";
-
-    document.getElementById("score").textContent =
-        score + " / " + currentQuiz.length;
-
-    document.getElementById("resultMessage").textContent =
-        score === currentQuiz.length
-        ? "Excellent! Perfect score! 🏆"
-        : score >= 2
-        ? "Good effort! Keep learning and improving! 🌟"
-        : "Keep practising! Every attempt helps you learn. 💪";
-
-    window.scrollTo(0,0);
+function chooseAnswer(i,button){
+ if(quizAnswered)return;quizAnswered=true;const q=questions[quizIndex];
+ document.querySelectorAll("#quizOptions button").forEach((b,index)=>{b.disabled=true;if(index===q.a)b.classList.add("correct");});
+ if(i===q.a){quizPoints++;document.getElementById("quizFeedback").textContent="Correct! "+q.e;}
+ else{button.classList.add("wrong");document.getElementById("quizFeedback").textContent="Not quite. "+q.e;}
+ document.getElementById("nextQuestion").textContent=quizIndex===questions.length-1?"See result →":"Next question →";
+ document.getElementById("nextQuestion").classList.remove("hidden");
 }
-
-function restartQuiz() {
-
-    document.getElementById("resultBox").style.display = "none";
-    document.getElementById("setup").style.display = "block";
-
-    window.scrollTo(0,0);
+function nextQuizQuestion(){
+ if(quizIndex<questions.length-1){quizIndex++;renderQuestion();return;}
+ document.getElementById("quizArea").classList.add("hidden");document.getElementById("quizResult").classList.remove("hidden");
+ document.getElementById("quizScore").textContent="You scored "+quizPoints+" / "+questions.length;
 }
-
+(function init(){
+ const saved=localStorage.getItem(STORAGE.profile);
+ if(saved){try{profile=JSON.parse(saved);if(profile&&Array.isArray(profile.subjects)){renderDashboard();showPage("dashboardPage");return;}}catch(e){}}
+ showPage("welcome");
+})();
 </script>
-
 </body>
-    </html>
-            
+</html>
